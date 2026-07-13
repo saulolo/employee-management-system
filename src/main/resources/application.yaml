@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: employee-management-system
+
+  # Configuración base para acceso a datos
+  datasource:
+    url: ${SPRING_DB_URL}
+    username: ${SPRING_DB_USERNAME}
+    password: ${SPRING_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  # Configuración JPA
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc.time_zone: America/Bogota
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+# Configuración del puerto
+server:
+  port: ${SERVER_PORT}
+  servlet:
+    context-path: ${SERVER_SERVLET_CONTEXT_PATH}
+
+# Configuración de Logging
+logging:
+  level:
+    root: INFO
+    edu.ems: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# Perfiles
+---
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+  jackson:
+    time-zone: America/Bogota
+  jpa:
+    properties:
+      hibernate.jdbc.time_zone: America/Bogota
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  jpa:
+    show-sql: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  jpa:
+    show-sql: false
+
+
+
+
+
