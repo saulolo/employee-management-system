@@ -73,4 +73,13 @@ public class ApplicationConfig {
         return new DeleteEmployeeUseCase(employeeGateway);
     }
 
+    /*TODO: Sigue Impementar la capa controladora en este orden:
+    *  1. ApiResponse.java          ← estructura genérica de respuesta
+    * 2. EmployeeRequestDTO.java   ← validaciones con @NotBlank, @Email, etc.
+    * 3. EmployeeResponseDTO.java  ← campos formateados (fechas)
+    * 4. EmployeeRestMapper.java   ← convierte Employee ↔ DTOs
+    * 5. EmployeeController.java   ← endpoints /api/v1/employees
+    * */
+
+
 }
